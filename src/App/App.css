@@ -1,0 +1,42 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  /*background-color: #222;*/
+    background-image: url("../imgs/wembley.jpg");
+  height: 5%;
+  padding: 20px;
+  color: black;
+}
+
+.App-title {
+  font-size: 2em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Custom styles */
+.boxTransfer{
+    border: 1px solid red;
+    padding: 10px;
+}
+.boxTransfer h3{
+    border: 1px solid gray;
+    margin: 0px, 10px;
+}
+.boxTeam{
+    background-color: #1E8449;
+}
