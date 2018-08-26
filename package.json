@@ -5,12 +5,13 @@
   "dependencies": {
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
-    "react-scripts": "1.1.5"
+    "react-scripts": "1.1.5",
+    "whatwg-fetch": "^2.0.4"
   },
-    "repository": {
+  "repository": {
     "type": "git",
     "url": "https://github.com/AF-files/fanfoot.web.git"
-    },
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
