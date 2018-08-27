@@ -10,8 +10,7 @@ class App extends Component {
     constructor(props){
         super(props)
         
-        this.state = {players:[]};
-        this.state = {playersPos: []};
+        this.state = {players:[], GKs: [], DEFs: [], MIDs: [], FORs: []};
         
         this.loadData = this.loadData.bind(this);
         this.playerList = this.playerList.bind(this);
@@ -23,14 +22,36 @@ class App extends Component {
         var self = this;
         //maybe get players but put them into 4 different states for each position
         http.getPlayers().then(returnedData => {
-            self.setState({players: returnedData});
+            var GKlist = [];
+            var DEFlist = [];
+            var MIDlist = [];
+            var FORlist = [];
+            var temp = [];
+            for(var i = 0;i<returnedData.length; i++){
+                if(returnedData[i].position == "GK"){
+                    GKlist.push(returnedData[i]);
+                }else if(returnedData[i].position == "DEF"){
+                    DEFlist.push(returnedData[i]);
+                }else if(returnedData[i].position == "MID"){
+                    MIDlist.push(returnedData[i]);
+                }else if(returnedData[i].position == "FOR"){
+                    FORlist.push(returnedData[i]);
+                }else{
+                    temp.push(returnedData[i]);
+                }
+            }
+            self.setState({GKs: GKlist});
+            self.setState({MIDs: MIDlist});
+            self.setState({DEFs: DEFlist});
+            self.setState({FORs: FORlist});
+            self.setState({players: temp});
         }, err => {
             console.log("couldn't fetch players");
         });
     }
     
-    playerList = (pos) => {
-        const list = this.state.players.map((player)=>{
+    playerList = (curState) => {
+        const list = curState.map((player)=>{
             return(
                 <div key={player._id}>
                     <Player player={player}/>
@@ -50,10 +71,13 @@ class App extends Component {
            <div className="row">
                <div className="col-md-3 boxTransfer">
                    <h3>Goalkeepers</h3>
-                   {this.playerList("GK")}
+                   {this.playerList(this.state.GKs)}
                    <h3>Defenders</h3>
+                   {this.playerList(this.state.DEFs)}
                    <h3>Midfielders</h3>
+                   {this.playerList(this.state.MIDs)}
                    <h3>Forwards</h3>
+                   {this.playerList(this.state.FORs)}
                </div>
                <div className="col-md-9 boxTeam">
                    <h3>Users Team</h3>
