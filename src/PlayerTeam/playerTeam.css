@@ -1,0 +1,13 @@
+.playerCard{
+    float:none;
+    display: inline-block;
+    margin: 0 10px;
+}
+.playerCard img{
+    width:100px;
+    height:100px;
+}
+.details{
+    padding: 0;
+}
+

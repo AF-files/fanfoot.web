@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Player from '../Player/player.js';
+import PlayerTeam from '../PlayerTeam/playerTeam.js';
 import HttpService from '../Services/http-service.js';
 
 const http = new HttpService();
@@ -14,6 +15,7 @@ class App extends Component {
         
         this.loadData = this.loadData.bind(this);
         this.playerList = this.playerList.bind(this);
+        this.firstEleven = this.firstEleven.bind(this);
         
         this.loadData();
     }
@@ -28,13 +30,13 @@ class App extends Component {
             var FORlist = [];
             var temp = [];
             for(var i = 0;i<returnedData.length; i++){
-                if(returnedData[i].position == "GK"){
+                if(returnedData[i].position === "GK"){
                     GKlist.push(returnedData[i]);
-                }else if(returnedData[i].position == "DEF"){
+                }else if(returnedData[i].position === "DEF"){
                     DEFlist.push(returnedData[i]);
-                }else if(returnedData[i].position == "MID"){
+                }else if(returnedData[i].position === "MID"){
                     MIDlist.push(returnedData[i]);
-                }else if(returnedData[i].position == "FOR"){
+                }else if(returnedData[i].position === "FOR"){
                     FORlist.push(returnedData[i]);
                 }else{
                     temp.push(returnedData[i]);
@@ -53,9 +55,22 @@ class App extends Component {
     playerList = (curState) => {
         const list = curState.map((player)=>{
             return(
-                <div key={player._id}>
+                //want to make a list maybe put key into player(key is to make each player item individual)
+                <div className="playerItem" key={player._id}>
                     <Player player={player}/>
                 </div>
+            )
+        });
+        return (list);
+    }
+    
+    firstEleven = (curState) => {
+        const list = curState.map((player)=>{
+            return(
+                //want to make a list maybe put key into player(key is to make each player item individual)
+                
+                    <PlayerTeam player={player} key={player._id} id ={player._id}/>
+             
             )
         });
         return (list);
@@ -69,7 +84,7 @@ class App extends Component {
         </header>
         <div className="container-fluid">
            <div className="row">
-               <div className="col-md-3 boxTransfer">
+               <div className="col-md-4 boxTransfer">
                    <h3>Goalkeepers</h3>
                    {this.playerList(this.state.GKs)}
                    <h3>Defenders</h3>
@@ -79,9 +94,28 @@ class App extends Component {
                    <h3>Forwards</h3>
                    {this.playerList(this.state.FORs)}
                </div>
-               <div className="col-md-9 boxTeam">
-                   <h3>Users Team</h3>
-                   
+               <div className="col-md-8 boxTeam">
+                   <h3>Fantasy Team</h3>
+                   <div className="row">
+                       <div className="col-md-12 playerLine">
+                           {this.firstEleven(this.state.GKs)}
+                       </div>
+                   </div>
+                   <div className="row">
+                       <div className="col-md-12">
+                           {this.firstEleven(this.state.DEFs)}
+                       </div>
+                   </div>
+                   <div className="row">
+                       <div className="col-md-12">
+                           {this.firstEleven(this.state.MIDs)}
+                       </div>
+                   </div>
+                   <div className="row">
+                       <div className="col-md-12">
+                           {this.firstEleven(this.state.FORs)}
+                       </div>
+                   </div>
                </div>
            </div>
         </div>

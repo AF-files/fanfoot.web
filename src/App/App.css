@@ -30,13 +30,25 @@
 
 /* Custom styles */
 .boxTransfer{
-    border: 1px solid red;
+    border: 1px solid black;
     padding: 10px;
+    height: 550px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 .boxTransfer h3{
-    border: 1px solid gray;
-    margin: 0px, 10px;
+    border: 2px solid gray;
+    border-radius: 5px;
+    margin: 10px 0;
 }
 .boxTeam{
     background-color: #1E8449;
 }
+.playerItem{
+    margin: 10px 0;
+}
+.playerItem:hover{
+    background-color: skyblue;
+    margin: 0;
+}
+

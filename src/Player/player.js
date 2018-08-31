@@ -9,12 +9,16 @@ class Player extends Component{
     
     render(){
         return(
-            <div className="card">
-                <div className="card-img-top" alt="Player" src={this.props.player.imgURL}>
+            <div className="row">
+               <div className="col-sm-3">
+                    <button className="btn btn-primary">Add</button>
+               </div>
+                <div className="col-sm-6 playerName">
+                    <h4>{this.props.player.name}</h4>
                 </div>
-                <div className="card-body">
-                    <h4 className="card-title">{this.props.player.name}</h4>
-                </div>  
+                <div className="col-sm-3 playerName">
+                    <h4>£{this.props.player.price}m</h4>
+                </div>
             </div>
         )
     }

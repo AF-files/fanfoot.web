@@ -1,0 +1,13 @@
+.playerListView{
+    padding: 0;   
+}
+div.button{
+    font-size: 1.2rem;
+}
+.playerName{
+   text-align: center;
+    margin: auto;
+}
+.playerName h4{
+    font-size: 1.2rem;
+}
