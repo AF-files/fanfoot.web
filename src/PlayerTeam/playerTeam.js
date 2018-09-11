@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
 import './playerTeam.css';
 
-class PlayerTeam extends Component{
-    constructor(props){
-        super(props);
-        
-    }
-    
+class PlayerTeam extends Component{    
     render(){
         return(
             <div className="card playerCard" key={this.props.id}>
@@ -26,5 +21,4 @@ class PlayerTeam extends Component{
         )
     }
 }
-
 export default PlayerTeam;

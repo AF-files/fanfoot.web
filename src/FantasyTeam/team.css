@@ -1,0 +1,8 @@
+.boxTeam{
+    /*background-color: #1E8449;*/
+    background-image: url('../imgs/pitch.jpg');
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow-y: hidden;
+}
