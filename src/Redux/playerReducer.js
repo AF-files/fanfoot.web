@@ -8,6 +8,10 @@ const initialState={
 }
 
 export default function(state = initialState, action){
+    console.log(state, action.type);
+    if(typeof state === "undefined"){
+        return initialState;
+    }
     switch(action.type){
         case BRING_IN_PLAYERS:
             return{
@@ -16,11 +20,22 @@ export default function(state = initialState, action){
                 PlayersTransfer: action.payload
             }
         case ADD_TO_TEAM:
-            return{
+            console.log("reducer");
+            return {
+                //return current state(... = spread operator)
                 ...state,
                 playersTeam: action.payload
+            }/*Object.assign({}, state, {
+                ...state,
+                playersTeam: action.payload
+            });*/
+        case REMOVE_FROM_TEAM:
+            return{
+                ...state,
+                PlayersTransfer: action.payload
             }
         default:
             return state;
     }
+    console.log(state, action.type);
 }

@@ -16,8 +16,8 @@ class App extends Component {
             </header>
             <div className="container-fluid">
                <div className="row">
-                   <TransferList/>
-                   <FantasyTeam/>
+                   <TransferList />
+                   <FantasyTeam />
                </div>
             </div>
           </div>

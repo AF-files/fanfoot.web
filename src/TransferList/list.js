@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './list.css';
 import Player from '../Player/player.js';
 import {connect} from 'react-redux';
-import {fetchPlayers} from '../Redux/actions.js';
+import {addPlayerToTeam, fetchPlayers} from '../Redux/actions';
 
 class TransferList extends Component{
     
@@ -12,6 +12,7 @@ class TransferList extends Component{
     }
     
     componentWillMount(){
+        console.log("fetching")
         this.props.fetchPlayers();
     }
     
@@ -19,9 +20,9 @@ class TransferList extends Component{
         const list = this.props.transferList.map((player)=>{
             if(player.position == pos){
                 return(
-                //want to make a list maybe put key into player(key is to make each player item individual)
+                //(key is to make each player item individual)
                 <div className="playerItem" key={player._id}>
-                    <Player player={player}/>
+                    <Player player={player} addPlayerTeam={this.props.addPlayerTeam}/>
                 </div>
             )}  
         });
@@ -47,5 +48,13 @@ class TransferList extends Component{
 const mapStateToProps = state =>({
     transferList: state.playersInList.PlayersTransfer
 })
+const mapDispatchToProps = dispatch =>({
+    addPlayerTeam(player){
+        dispatch(addPlayerToTeam(player))
+    },
+    fetchPlayers(){
+        dispatch(fetchPlayers())
+    }
+});
 
-export default connect(mapStateToProps, {fetchPlayers})(TransferList);
+export default connect(mapStateToProps, mapDispatchToProps)(TransferList);

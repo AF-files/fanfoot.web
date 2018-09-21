@@ -8,8 +8,7 @@ class httpService{
         ///a promise is basically a response(it promises to return something)
         var promise = new Promise((resolve, reject)=>{
             fetch('http://localhost:3001/players').then(response => {
-                resolve(response.json());
-                
+                resolve(response.json()); 
             })
         });
         return promise;

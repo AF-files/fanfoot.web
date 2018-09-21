@@ -2,53 +2,50 @@ import React, { Component } from 'react';
 import './team.css';
 import PlayerTeam from '../PlayerTeam/playerTeam.js';
 import {connect} from 'react-redux';
-import {fetchPlayers} from '../Redux/actions.js';
+import {removePlayerFromTeam} from '../Redux/actions.js';
 
 class FantasyTeam extends Component{
     
     constructor(props){
         super(props);
-        //this.playerList = this.playerList.bind(this);
+        this.playerList = this.playerList.bind(this);
     }
     
-    /*playerList = (pos) => {
+    //is only called after first click then stops
+    //also whens its called technically the state is undefined as there isn't any thing in it
+    playerList = () => {
+        console.log("map players")
         const list = this.props.fantasyTeam.map((player)=>{
-            if(player.position == pos){
-                return(
+            //return(
                 //want to make a list maybe put key into player(key is to make each player item individual)
-                <PlayerTeam player={player} key={player._id} id ={player._id}/>
-            )}  
+                //<PlayerTeam player={player} key={player._id}/>
+                console.log("item");
+            //)
         });
-        return (list);
-    }*/
+        console.log(list);
+        return (list);     
+    }
     
     render(){
         return(
             <div className="col-md-8 boxTeam">
                <h3>Fantasy Team</h3>
                <div className="row">
-                   <div className="col-md-12">
+                   <div className="col-md-12" onClick={()=>this.playerList()}>
+                       
+                       
                    </div>
-               </div>
-               <div className="row">
-                   <div className="col-md-12">
-                   </div>
-               </div>
-               <div className="row">
-                   <div className="col-md-12">
-                   </div>
-               </div>
-               <div className="row">
-                   <div className="col-md-12">
-                   </div>
+                   
                </div>
            </div>
         )
     }
 }
 //this receives the return from the reducer and adds it to props
-const mapStateToProps = state =>({
-    fantasyTeam: state.playersInList.playersTeam
-})
+const mapStateToProps = state =>{
+    return{
+        fantasyTeam: state.playersInList.playersTeam
+    }
+}
 
-export default connect(mapStateToProps, {fetchPlayers})(FantasyTeam);
+export default connect(mapStateToProps, {removePlayerFromTeam})(FantasyTeam);
